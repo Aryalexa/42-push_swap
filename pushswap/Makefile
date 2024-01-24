@@ -9,7 +9,7 @@ RM		= /bin/rm -rf
 
 NAME	= push_swap
 
-SRCS	= push_swap.c
+SRCS	= push_swap.c ps_ops.c ps_args.c ps_utils.c ps_frees.c
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT_PATH  = ./libft/42-libft/libft

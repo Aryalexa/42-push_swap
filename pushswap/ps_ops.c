@@ -19,15 +19,15 @@
 */
 void	swap(t_stack **st)
 {
-	int	n1;
-	int	n2;
+	int	*n1;
+	int	*n2;
 
 	if ((*st)->size < 2)
 		return ;
-	n1 = ft_pop_left(st);
-	n2 = ft_pop_left(st);
-	ft_append_left(st, n1);
-	ft_append_left(st, n2);
+	n1 = (int *)ft_pop_left(st);
+	n2 = (int *)ft_pop_left(st);
+	ft_append_left(st, (void *)n1);
+	ft_append_left(st, (void *)n2);
 }
 
 /**
@@ -37,12 +37,12 @@ void	swap(t_stack **st)
 */
 void	push(t_stack **st, t_stack **other)
 {
-	int	n;
+	int	*n;
 
 	if ((*other)->size == 0)
 		return ;
-	n = ft_pop_left(other);
-	ft_append_left(st, n);
+	n = (int *)ft_pop_left(other);
+	ft_append_left(st, (void *)n);
 }
 
 /**
@@ -51,12 +51,12 @@ void	push(t_stack **st, t_stack **other)
 */
 void	rotate(t_stack **st)
 {
-	int	n;
+	int	*n;
 
 	if ((*st)->size == 0)
 		return ;
-	n = ft_pop_left(st);
-	ft_append(st, n);
+	n = (int *)ft_pop_left(st);
+	ft_append(st, (void *)n);
 }
 
 /**
@@ -65,10 +65,10 @@ void	rotate(t_stack **st)
 */
 void	reverse_rotate(t_stack **st)
 {
-	int	n;
+	int	*n;
 
 	if ((*st)->size == 0)
 		return ;
-	n = ft_pop(st);
-	ft_append_left(st, n);
+	n = (int *)ft_pop(st);
+	ft_append_left(st, (void *)n);
 }
