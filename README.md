@@ -41,6 +41,16 @@ This way we reduce the number of operations from `N + M` to `max(N, M)`.
 	- Otherwise, we will find its position withing stack_B manually.
 
 #### Algo
+🔸 check if stack is already in asc-order.
+- set ini and end of the longest subarray already sorted.
+- if end-ini+1 == number of elemts 
+	- -> already sorted!
+	- else, continue
+		```
+		OR if end-ini+1 > 3: //jugaremos con este num: > 3? > % del total?
+		- -> fix [ini, end] -> set game.a_ini, game.a_end, game.a_sorted=T
+		- else, set game.a_ini=n-4, game.a_end=n-1, game.a_sorted=F```
+
 🔸 Start moving two elements to stack_B: `pb`, `pb`.
 
 🔸 Move the cheapest element from stack_A to stack_B.
@@ -73,6 +83,7 @@ Move one by one while the number os elements is stack_A > 3
 
 🔸 Move back all elements from stack_B to stack_A
 
+
 🔸 Check that the minimum element of stack_A is at the top.
 
 
@@ -80,3 +91,5 @@ Move one by one while the number os elements is stack_A > 3
 
 ### Resources/Credits
 - [Medium: ayogun's push-swap](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
+	- Github: [ayogun/push_swap](https://github.com/ayogun/push_swap)
+- Radix method: [Brazhnik/Push_swap](https://github.com/VBrazhnik/Push_swap/wiki/Algorithm)

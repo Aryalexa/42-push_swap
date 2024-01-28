@@ -59,25 +59,30 @@ int	*args_as_ints(int argc, char *argv[], int *size)
 /**
  * Are `ints` valid? 1-yes, 0-no
  * `ints` are valid when: 
+ * - ints not null
+ * - n > 0
  * - no dups
 */
-int	valid_args(int *ints, int n)
+t_bool	valid_args(int *ints, int n)
 {
-	t_list	*nodups;
 	int		i;
+	t_bool	ok;
+	t_list	*nodups_lst;
 	int		*(*cmp)(void *, void *);
 
-
-	nodups = ft_lstnew(&ints[0]);
-	i = 1;
+	if (!ints || n <= 0)
+		return (0);
+	ok = TRUE;
 	cmp = (int *(*)(void *, void *))ft_intcmp;
-	while (i < n)
+	nodups_lst = ft_lstnew(&ints[0]);
+	i = 1;
+	while (i < n && ok)
 	{
-		if (ft_lstindex(nodups, &ints[i], cmp) != -1)
-			return (0);
-		ft_lstadd_back(&nodups, ft_lstnew(&ints[i]));
+		if (ft_lstindex(nodups_lst, &ints[i], cmp) != -1)
+			ok = FALSE;
+		ft_lstadd_back(&nodups_lst, ft_lstnew(&ints[i]));
 		i++;
 	}
-	ft_lstclear(&nodups, skip);
-	return (1);
+	ft_lstclear(&nodups_lst, skip);
+	return (ok);
 }

@@ -17,7 +17,7 @@
 /**
  * It swaps first two elements
 */
-void	swap(t_stack **st)
+void	swap(t_deque **st)
 {
 	int	*n1;
 	int	*n2;
@@ -35,7 +35,7 @@ void	swap(t_stack **st)
  * pushes it to the main stack `st`.
  * If `other` is empty, no changes.
 */
-void	push(t_stack **st, t_stack **other)
+void	push(t_deque **st, t_deque **other)
 {
 	int	*n;
 
@@ -49,7 +49,7 @@ void	push(t_stack **st, t_stack **other)
  * It moves the first element to the last position so
  * the rest of the elements move one position up.
 */
-void	rotate(t_stack **st)
+void	rotate(t_deque **st)
 {
 	int	*n;
 
@@ -63,7 +63,7 @@ void	rotate(t_stack **st)
  * It moves the last element to the first position so
  * the rest of the elements move one position down.
 */
-void	reverse_rotate(t_stack **st)
+void	reverse_rotate(t_deque **st)
 {
 	int	*n;
 

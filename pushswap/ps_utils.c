@@ -6,6 +6,10 @@ int	ft_intcmp(int *a, int *b)
 }
 
 
+/**
+ * 	void (*)(void *) skip
+
+*/
 void	skip(void *x)
 {
 	(void)*x;
@@ -13,16 +17,26 @@ void	skip(void *x)
 
 /// ------------- prints ---------------
 
-void	ft_putnbr(void *x)
+static void	ft_putnbr(void *x)
 {
-	ft_printf("%i,", *(int *)x);
+	ft_printf("%i ", *(int *)x);
 }
 
-void	print_deque(t_deque *dq)
+static void	ft_putstr(void *x)
+{
+	// TODO: sep = '\n'
+	ft_printf("%s ", (char *)x);
+}
+
+
+void	print_deque(t_deque *dq, t_bool numbers)
 {
 	void	(*prnt)(void *);
 
-	prnt = (void (*)(void *))ft_putnbr;
+	if (numbers)
+		prnt = (void (*)(void *))ft_putnbr;
+	else
+		prnt = (void (*)(void *))ft_putstr;
 	ft_iter_deque(dq, prnt);
 	ft_printf("\n");
 }

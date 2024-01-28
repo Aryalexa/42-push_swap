@@ -3,21 +3,35 @@
 
 # include "libft/42-libft/libft/libft.h"
 
-typedef t_deque	t_stack;
+// stack
+typedef struct s_stack
+{
+	t_deque	*st;
+	char	*name;
+}	t_stack;
+t_stack	*ft_new_stack(char *name);
+void	ft_stack_dump(t_stack **stack, int *ints, int n);
+void	ft_del_stack(t_stack **stack);
+
+// game
+typedef struct s_game
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		min_elem;
+	t_deque	*sol;
+}	t_game;
+t_game	*init_game(int *ints, int n);
+void	del_game(t_game **game);
 
 // utils
 int		ft_intcmp(int *a, int *b);
 void	skip(void *x);
-void	ft_putnbr(void *x);
-void	print_deque(t_deque *dq);
-
-// frees
-//change to void**? and move to libft?
-void	ft_free_arrstr(char **words);
+void	print_deque(t_deque *dq, t_bool numbers);
 
 // args
 int		*args_as_ints(int argc, char *argv[], int *size);
-int		valid_args(int *ints, int n);
+t_bool	valid_args(int *ints, int n);
 
 
 // ops

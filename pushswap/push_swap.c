@@ -5,61 +5,53 @@ void leaks()
 	system("leaks push_swap");
 }
 
-void	load_stack_a(t_stack **a, int n, int *ints)
-{
-	int	i;
 
-	*a = NULL;
-	i = 0;
-	while (i < n)
-	{
-		ft_append(a, &ints[i]);
-		i++;
-	}
-}
 
 /**
- * return/print instructions???
+ * 
  * 
 */
-void	solve_push_swap(int *ints, int n)
+void	solve_push_swap(t_game *game)
 {
-	t_stack	*a;
-	t_stack	*b;
 
-	load_stack_a(&a, n, ints);
-	b = ft_new_deque();
-	if (!a || !b)
-		return ;
-	//solve here
-	print_deque(a);
+	print_deque(game->stack_a->st, TRUE); //
 
-	ft_clear_deque(&a, (void (*)(void *))skip);
-	ft_clear_deque(&b, skip);
 
+}
+
+void	end_all(int **ints, t_game **game)
+{
+	if (*game)
+		del_game(game);
+	if (*ints)
+		free(ints); //?
 }
 
 int	main(int argc, char *argv[])
 {
-	int	*ints;
-	int	n;
+	int		*ints;
+	int		n;
+	t_game	*game;
 
 	//atexit(leaks);
 	if (argc == 1)
 		return (0);
 	ints = args_as_ints(argc, argv, &n);
-	if (!ints || n == 0 || !valid_args(ints, n))
+	if (!valid_args(ints, n))
 	{
+		end_all(&ints, &game);
 		ft_printf("Error\n");
 		return (-1);
 	}
-
-	ft_putarr_ints(ints, n);
-
-	solve_push_swap(ints, n);
-
-	free(ints);
-
-
+	ft_putarr_ints(ints, n); //
+	game = init_game(ints, n);
+	if (!game)
+	{
+		end_all(&ints, &game);
+		return (-1);
+	}
+	solve_push_swap(game);
+	print_game_solution(game);
+	end_all(&ints, &game);
 	return (0);
 }
