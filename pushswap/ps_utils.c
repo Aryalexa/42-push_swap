@@ -17,15 +17,20 @@ void	skip(void *x)
 
 /// ------------- prints ---------------
 
+/**
+ * print number + separator
+*/
 static void	ft_putnbr(void *x)
 {
 	ft_printf("%i ", *(int *)x);
 }
 
+/**
+ * print number + separator
+*/
 static void	ft_putstr(void *x)
 {
-	// TODO: sep = '\n'
-	ft_printf("%s ", (char *)x);
+	ft_printf("%s\n", (char *)x);
 }
 
 
@@ -38,5 +43,5 @@ void	print_deque(t_deque *dq, t_bool numbers)
 	else
 		prnt = (void (*)(void *))ft_putstr;
 	ft_iter_deque(dq, prnt);
-	ft_printf("\n");
+	//ft_printf("\n");
 }

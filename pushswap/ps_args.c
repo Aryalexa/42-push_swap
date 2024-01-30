@@ -71,7 +71,7 @@ t_bool	valid_args(int *ints, int n)
 	int		*(*cmp)(void *, void *);
 
 	if (!ints || n <= 0)
-		return (0);
+		return (FALSE);
 	ok = TRUE;
 	cmp = (int *(*)(void *, void *))ft_intcmp;
 	nodups_lst = ft_lstnew(&ints[0]);

@@ -1,20 +1,73 @@
-# 42-push_swap
-Optimized-sorting problem using a pair of a special stack.
+# `push_swap` project
+
+What you will learn: 
+- Logical thinking, project organization, case discerning. 
+- Data Structures: stack, deque (Deques are great, with them we can represent others as stack, queue, ...)
+- Sorting/searching algorithms. In this project approach a binary search will be used.
+- C structs, C Enums, C Pointers
+
+Table of Contents
+- Push swap Problem
+- Project requirements
+- Resolving the Push swap Problem
+	- One, Two and Three elements cases
+	- Minimize the number of operations
+	- Algo basics
+	- Algo
+
+### Push swap Problem
+It is an optimized-sorting problem using a pair of a special stack, stack A and stack B, with its own operations.
+
+Given a number of integers already in stack A, we must find a sequence of operations, as short as possible, to have all elements sorted in A in ascending order.
+
+Operations:
+
+ * `sa` swap a: swap first two elemets in stack a, when there are 2 elements or more.
+ * `sb` swap b: swap first two elemets in stack b, when there are 2 elements or more.
+ * `ss` swap a and swap b at the same time.
+ * `pa` push a: take the first element from b and push it first into a, when there is one or more elements in b.
+ * `pb` push b: take the first element from a and push it first into b, when there is at least one element in a.
+ * `ra` rotate a: move the first element to the last position so the rest of the elements move one position up.
+ * `rb` rotate b: move the first element to the last position so the rest of the elements move one position up.
+ * `rr` rotate a and b at the same time.
+ * `rra` reverse rotate a: moves the last element to the first position so the rest of the elements move one position down.
+ * `rrb` reverse rotate b: moves the last element to the first position so the rest of the elements move one position down.
+ * `rrr` reverse rotate a and b at the same time.
 
 
-#### Three elements cases
+### Project requirements
+- We need a program that takes an arbitrary number of integers as input and prints the solution to the "Push swap" problem as if the integers were inserted into stack A.
+
+- The solution must be a sequence of instructions.
+
+- Input error management
+
+
+### Resolving the Push swap Problem
+
+Let's see some basics and how the algorithm goes.
+
+#### One, Two and Three elements cases
+These are the smallest cases, and for them the solution is straightforward without needing a second stack.
+
+- For one element, there's nothing to do.
+- For two elements, we will need a swap or not.
+
+##### Three elements cases
+This is the smallest scenario we will let happen when moving elements from one stack to the other.
+
 How many ways can we order 3 different elements? `3! = 6`.
 
-(You have 3 options for first position, once it is fixed you have 2 options for second position, and the third is determined by the two first decisions, so `3*2*1 = 3! = 6`)
+(You have 3 options for first position. Once it is fixed, because there's no repetitions, you have 2 options for second position. And the third is determined by the two first decisions. So `3*2*1 = 3! = 6`)
 ``` python
 # For stack_A
 [1,2,3] -> ok
 [2,3,1] -> rra -> [1,2,3] -> ok
 [3,1,2] -> ra  -> [1,2,3] -> ok
 
-[1,3,2] -> rra -> [2,1,3] -> sa  -> [1,2,3] -> ok
 [3,2,1] -> sa  -> [2,3,1] -> rra -> [1,2,3] -> ok
 [2,1,3] -> sa  -> [1,2,3] -> ok
+[1,3,2] -> rra -> [2,1,3] -> sa  -> [1,2,3] -> ok
 ```
 
 In total we have 6 cases: 
@@ -27,16 +80,16 @@ In total we have 6 cases:
 Leverage same-time operations: `ss`, `rr`, `rrr`.
 
 Instead of doing 2 `ra` ops and 3 `rb` ops (5 ops), do 2 `rr` ops and 1 `rb` (3 ops).
-This way we reduce the number of operations from `N + M` to `max(N, M)`.
+This way we reduce the number of operations from `N + M` to `max(N, M)`: `min(N, M)` same-time ops and the rest being single-stack ops.
 
 #### Algo basics
 - Starting point: all elements in stack_A.
-- Target: all elements in stack_A in ascending order.
-- If we have all elements in stack_B in descending order, it's direct to have stack_A in ascending order.
+- Goal: all elements in stack_A in ascending order.
+- If we arrange all elements in stack_B in descending order, it's direct to have stack_A in ascending order.
 	- `A: /\ <-- B: \/`
 - The algorithm considers the stacks are circular. So the stacks `3,2,1`, `1,3,2` and `2,1,3` are all in descending order (The final result does not do this consideration).
 - The algorithm will push everything from stack_A to stack_B in descending order, slowly.
-	- Is the head of stack_A a new MIN or MAX in stack_B? move it to the head of stack_B
+	- 🔴 Is the head of stack_A a new MIN or MAX in stack_B? move it to the head of stack_B
 		- If it is the MIN, we consider that it's correctly in desc order (consider the stacks are circular)
 	- Otherwise, we will find its position withing stack_B manually.
 
