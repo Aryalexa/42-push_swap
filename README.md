@@ -4,7 +4,7 @@ What you will learn:
 - Logical thinking, project organization, case discerning. 
 - Data Structures: stack, deque (Deques are great, with them we can represent others as stack, queue, ...)
 - Sorting/searching algorithms. In this project approach a binary search will be used.
-- C structs, C Enums, C Pointers
+- C structs, C Enums, C Pointers, using functions as parameters.
 
 Table of Contents
 - Push swap Problem

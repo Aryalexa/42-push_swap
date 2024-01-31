@@ -49,6 +49,6 @@ void	del_game(t_game **game)
 		return ;
 	ft_del_stack(&(*game)->stack_a);
 	ft_del_stack(&(*game)->stack_b);
-	ft_clear_deque(&(*game)->sol, free);	
+	ft_clear_deque(&(*game)->sol, free);
 	free(*game);
 }

@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-void leaks()
+void	leaks(void)
 {
 	system("leaks push_swap");
 }
 
 
-void 	solve_big_ps(t_game **game)
+void	solve_big_ps(t_game **game)
 {
 	ft_printf("BIG!\n");
 	return ;
@@ -34,7 +34,7 @@ void	solve_push_swap(t_game **game)
 }
 
 void	end_game(int **ints, t_game **game)
-{	
+{
 	if (*game)
 	{
 		del_game(game);
@@ -65,11 +65,11 @@ int	main(int argc, char *argv[])
 	game = init_game(ints, n);
 	if (!game)
 	{
-		ft_printf("no game\n");
+		ft_printf("no game\n"); // ---
 		end_game(&ints, &game);
 		return (-1);
 	}
-	ft_printf("*game*\n");
+	ft_printf("*game*\n"); // ---
 	solve_push_swap(&game);
 	print_game_solution(game);
 	end_game(&ints, &game);

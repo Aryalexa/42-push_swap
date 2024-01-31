@@ -11,7 +11,7 @@ typedef enum e_order
 
 // stack
 typedef t_deque	t_stack;
-t_stack	*ft_new_stack();
+t_stack	*ft_new_stack(void);
 void	ft_stack_dump(t_stack **stack, int *ints, int n);
 void	ft_del_stack(t_stack **stack);
 
@@ -29,9 +29,8 @@ void	add_to_sol(t_game **game, const char *op);
 void	print_game_solution(t_game *game);
 
 // solver functions
-void 	solve_small_ps(t_game **game);
+void	solve_small_ps(t_game **game);
 t_bool	is_sorted(t_stack *st, t_order order);
-
 
 // ops
 void	sa(t_game **game);
@@ -60,8 +59,5 @@ void	print_deque(t_deque *dq, t_bool numbers);
 // args
 int		*args_as_ints(int argc, char *argv[], int *size);
 t_bool	valid_args(int *ints, int n);
-
-
-// ops
 
 #endif

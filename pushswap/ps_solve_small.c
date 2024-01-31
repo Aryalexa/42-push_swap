@@ -11,11 +11,11 @@
  * case 5: [1,3,2] => [m,M,2]
  * case -1: error
 */
-static int discern_3elem_case(int n1, int n2, int n3)
+static int	discern_3elem_case(int n1, int n2, int n3)
 {
 	int	min;
 	int	max;
-	
+
 	min = ft_min_nbr(ft_min_nbr(n1, n2), n3);
 	max = ft_max_nbr(ft_max_nbr(n1, n2), n3);
 
@@ -44,7 +44,7 @@ static int discern_3elem_case(int n1, int n2, int n3)
  * 4:[2,1,3] -> sa  -> [1,2,3] -> ok
  * 5:[1,3,2] -> rra -> [2,1,3] -> sa  -> [1,2,3] -> ok
 */
-static void solve_small_ps_3(t_game **game, int case_3)
+static void	solve_small_ps_3(t_game **game, int case_3)
 {
 	if (case_3 == 1)
 		rra(game);
@@ -67,7 +67,7 @@ static void solve_small_ps_3(t_game **game, int case_3)
 /**
  * Solve stack A when there's 3 elements or less
 */
-void 	solve_small_ps(t_game **game)
+void	solve_small_ps(t_game **game)
 {
 	int	case_3;
 
@@ -79,10 +79,9 @@ void 	solve_small_ps(t_game **game)
 		return ;
 	}
 	case_3 = discern_3elem_case(
-		*(int *)(*game)->stack_a->head->content,
-		*(int *)(*game)->stack_a->head->next->content,
-		*(int *)(*game)->stack_a->head->next->next->content
-	);
+			*(int *)(*game)->stack_a->head->content,
+			*(int *)(*game)->stack_a->head->next->content,
+			*(int *)(*game)->stack_a->head->next->next->content
+			);
 	solve_small_ps_3(game, case_3);
-	
 }

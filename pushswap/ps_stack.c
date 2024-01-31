@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_stack	*ft_new_stack()
+t_stack	*ft_new_stack(void)
 {
 	return (ft_new_deque());
 }
