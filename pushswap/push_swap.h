@@ -110,6 +110,4 @@ void	print_deque(t_deque *dq, t_bool numbers);
 int		*args_as_ints(int argc, char *argv[], int *size);
 t_bool	valid_args(int *ints, int n);
 
-int		main(int argc, char *argv[]);
-
 #endif

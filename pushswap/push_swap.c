@@ -5,13 +5,8 @@ void	leaks(void)
 	system("leaks push_swap");
 }
 
-/**
- * 
- * 
-*/
 void	solve_push_swap(t_game **game)
 {
-	//print_deque((*game)->stack_a, TRUE); //
 	if (is_sorted((*game)->stack_a))
 		return ;
 	if ((*game)->stack_a->size <= 3)
@@ -41,22 +36,14 @@ int	main(int argc, char *argv[])
 	//atexit(leaks);
 	if (argc == 1)
 		return (0);
-	game = NULL;
 	ints = args_as_ints(argc, argv, &n);
-	if (!valid_args(ints, n))
-	{
-		end_game(&ints, &game);
-		ft_printf("Error\n");
-		return (-1);
-	}
 	game = init_game(ints, n);
-	if (!game)
+	if (!valid_args(ints, n) | !game)
 	{
-		ft_printf("no game\n"); // ---
 		end_game(&ints, &game);
+		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
-	ft_printf("*game*\n"); // ---
 	solve_push_swap(&game);
 	print_game_solution(game);
 	end_game(&ints, &game);

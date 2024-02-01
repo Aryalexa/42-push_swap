@@ -40,7 +40,7 @@ static int	ft_st_min(t_stack *st)
  * - new max or new min -> pos of first in the order (min)
  * - otherwise, go to the correct position: until cur < n < next -> next pos
 */
-static int	ft_csst_i_asc(t_stack *st, int n)
+static int	ft_csst_idx_asc(t_stack *st, int n)
 {
 	int			i;
 	t_intnode	*cur;
@@ -59,7 +59,7 @@ static int	ft_csst_i_asc(t_stack *st, int n)
 		while (!(cur->num < n && n < next->num))
 		{
 			i++;
-			cur = st->head;
+			cur = cur->next;
 			next = cur->next;
 		}
 	}
@@ -73,7 +73,7 @@ static int	ft_csst_i_asc(t_stack *st, int n)
  * - new max or new min -> pos of first in the order (max)
  * - otherwise, go to the correct position: until cur > n > next -> next pos
 */
-static int	ft_csst_i_desc(t_stack *st, int n)
+static int	ft_csst_idx_desc(t_stack *st, int n)
 {
 	int			i;
 	t_intnode	*cur;
@@ -92,7 +92,7 @@ static int	ft_csst_i_desc(t_stack *st, int n)
 		while (!(cur->num > n && n > next->num))
 		{
 			i++;
-			cur = st->head;
+			cur = cur->next;
 			next = cur->next;
 		}
 	}
@@ -107,7 +107,7 @@ static int	ft_csst_i_desc(t_stack *st, int n)
 int	ft_csorted_stack_index(t_stack *st, int n)
 {
 	if (st->order == ASC)
-		return (ft_csst_i_asc(st, n));
+		return (ft_csst_idx_asc(st, n));
 	else
-		return (ft_csst_i_desc(st, n));
+		return (ft_csst_idx_desc(st, n));
 }

@@ -1,5 +1,24 @@
 #include "push_swap.h"
 
+t_bool	is_sorted(t_stack *st)
+{
+	t_intnode	*cur;
+	t_intnode	*next;
+	t_order		order;
+
+	order = st->order;
+	cur = st->head;
+	while (cur->next)
+	{
+		next = cur->next;
+		if (order == ASC && cur->num > next->num)
+			return (FALSE);
+		if (order == DESC && cur->num < next->num)
+			return (FALSE);
+		cur = next;
+	}
+	return (TRUE);
+}
 
 /**
  * Return the number of case.

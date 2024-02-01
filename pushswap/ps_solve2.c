@@ -1,23 +1,21 @@
 #include "push_swap.h"
 
-t_bool	is_sorted(t_stack *st)
-{
-	t_intnode	*cur;
-	t_intnode	*next;
-	t_order		order;
 
-	order = st->order;
-	cur = st->head;
-	while (cur->next)
+static void	arrange_min_first(t_game **game)
+{
+	int	pos_of_min;
+
+	pos_of_min = ft_stack_index((*game)->stack_a, (*game)->min_elem);
+	if (pos_of_min < (*game)->stack_a->size - pos_of_min)
 	{
-		next = cur->next;
-		if (order == ASC && cur->num > next->num)
-			return (FALSE);
-		if (order == DESC && cur->num < next->num)
-			return (FALSE);
-		cur = next;
+		while ((*game)->stack_a->head->num != (*game)->min_elem)
+			ra(game);
 	}
-	return (TRUE);
+	else
+	{
+		while ((*game)->stack_a->head->num != (*game)->min_elem)
+			rra(game);
+	}
 }
 
 /**
@@ -49,10 +47,10 @@ static int	cheapest_number(t_stack *st_src, t_stack *st_dst, t_play *play)
 	return (cheapest);
 }
 
-
 /**
  * Move elements from stack_A to stack_B.
- * Move first two elements and keep stack_B sorted in circular descending order.
+ * First, move first two elements
+ * Start moving elements to stack_B, keep it sorted in circular descending order.
  * Keep moving until there's only 3 elements in stack_A.
 */
 static void	move_2b(t_game **game)
@@ -92,13 +90,7 @@ static void	moveback_2a(t_game **game)
 
 void	solve_big_ps(t_game **game)
 {
-	ft_printf("BIG!\n");
-	ft_printf("-----move_2B INIT\n");
 	move_2b(game);
-	ft_printf("move_2B FIN\n");
-	ft_printf("-----move_2A INIT\n");
 	moveback_2a(game);
-	ft_printf("move_2A FIN\n");
-
-	//arrange_min_first(game);
+	arrange_min_first(game);
 }
