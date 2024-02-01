@@ -5,19 +5,6 @@ void	leaks(void)
 	system("leaks push_swap");
 }
 
-
-void	solve_big_ps(t_game **game)
-{
-	ft_printf("BIG!\n");
-	return ;
-
-	if ((*game)->stack_a->size > 3)
-		pb(game);
-	if ((*game)->stack_a->size > 3)
-		pb(game);
-	// .. continue
-}
-
 /**
  * 
  * 
@@ -25,7 +12,7 @@ void	solve_big_ps(t_game **game)
 void	solve_push_swap(t_game **game)
 {
 	//print_deque((*game)->stack_a, TRUE); //
-	if (is_sorted((*game)->stack_a, ASC))
+	if (is_sorted((*game)->stack_a))
 		return ;
 	if ((*game)->stack_a->size <= 3)
 		solve_small_ps(game);

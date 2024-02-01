@@ -95,14 +95,12 @@ This way we reduce the number of operations from `N + M` to `max(N, M)`: `min(N,
 
 #### Algo
 🔸 check if stack is already in asc-order.
-- set ini and end of the longest subarray already sorted.
-- if end-ini+1 == number of elemts 
-	- -> already sorted!
-	- else, continue
-		```
-		OR if end-ini+1 > 3: //jugaremos con este num: > 3? > % del total?
-		- -> fix [ini, end] -> set game.a_ini, game.a_end, game.a_sorted=T
-		- else, set game.a_ini=n-4, game.a_end=n-1, game.a_sorted=F```
+- if already sorted end game
+- otherwise, continue
+
+🔸 Check the number of elements in stack_A
+- if size <= 3, give straightforward solution
+- otherwise, continue (in the next steps, remember to always check if the remainder is already in order!)
 
 🔸 Start moving two elements to stack_B: `pb`, `pb`.
 

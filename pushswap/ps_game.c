@@ -17,12 +17,12 @@ t_game	*init_game(int *ints, int n)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
-	game->stack_a = ft_new_stack();
-	game->stack_b = ft_new_stack();
+	game->stack_a = ft_new_stack(ASC);
+	game->stack_b = ft_new_stack(DESC);
 	game->sol = ft_new_deque();
 	if (!game->stack_a || !game->stack_b || !game->sol)
 		return (del_game(&game), NULL);
-	ft_stack_dump(&game->stack_a, ints, n);
+	ft_st_dump(&game->stack_a, ints, n);
 	game->min_elem = ft_min_arrint(ints, n);
 	return (game);
 }

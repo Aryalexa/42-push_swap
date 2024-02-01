@@ -42,7 +42,6 @@ void	pa(t_game **game)
 	b = (*game)->stack_b;
 	if (op_push(&a, &b))
 		add_to_sol(game, "pa");
-	//ft_printf("pb\n")
 }
 
 void	pb(t_game **game)

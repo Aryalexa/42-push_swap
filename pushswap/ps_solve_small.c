@@ -11,7 +11,7 @@
  * case 5: [1,3,2] => [m,M,2]
  * case -1: error
 */
-static int	discern_3elem_case(int n1, int n2, int n3)
+static t_3case	discern_3elem_case(int n1, int n2, int n3)
 {
 	int	min;
 	int	max;
@@ -20,44 +20,44 @@ static int	discern_3elem_case(int n1, int n2, int n3)
 	max = ft_max_nbr(ft_max_nbr(n1, n2), n3);
 
 	if (n1 == min && n3 == max)
-		return (0);
+		return (PS_123);
 	if (n3 == min && n2 == max)
-		return (1);
+		return (PS_231);
 	if (n2 == min && n1 == max)
-		return (2);
+		return (PS_312);
 	if (n3 == min && n1 == max)
-		return (3);
+		return (PS_321);
 	if (n2 == min && n3 == max)
-		return (4);
+		return (PS_213);
 	if (n1 == min && n2 == max)
-		return (5);
-	return (-1);
+		return (PS_132);
+	return (PS_ERR);
 }
 
 /**
  * Solve the 3-element stack using the cases:
  * 
- * 0: [1,2,3] -> ok
+ * 0:[1,2,3] -> ok
  * 1:[2,3,1] -> rra -> [1,2,3] -> ok
  * 2:[3,1,2] -> ra  -> [1,2,3] -> ok
  * 3:[3,2,1] -> sa  -> [2,3,1] -> rra -> [1,2,3] -> ok
  * 4:[2,1,3] -> sa  -> [1,2,3] -> ok
  * 5:[1,3,2] -> rra -> [2,1,3] -> sa  -> [1,2,3] -> ok
 */
-static void	solve_small_ps_3(t_game **game, int case_3)
+static void	solve_small_ps_3(t_game **game, int v_3e_case)
 {
-	if (case_3 == 1)
+	if (v_3e_case == PS_231)
 		rra(game);
-	else if (case_3 == 2)
+	else if (v_3e_case == PS_312)
 		ra(game);
-	else if (case_3 == 3)
+	else if (v_3e_case == PS_321)
 	{
 		sa(game);
 		rra(game);
 	}
-	else if (case_3 == 4)
+	else if (v_3e_case == PS_213)
 		sa(game);
-	else if (case_3 == 5)
+	else if (v_3e_case == PS_132)
 	{
 		rra(game);
 		sa(game);
@@ -69,19 +69,21 @@ static void	solve_small_ps_3(t_game **game, int case_3)
 */
 void	solve_small_ps(t_game **game)
 {
-	int	case_3;
+	t_3case	v_3e_case;
 
-	if ((*game)->stack_a->size <= 1)
+	if (is_sorted((*game)->stack_a) || (*game)->stack_a->size <= 1)
 		return ;
 	if ((*game)->stack_a->size == 2)
 	{
 		sa(game);
 		return ;
 	}
-	case_3 = discern_3elem_case(
-			*(int *)(*game)->stack_a->head->content,
-			*(int *)(*game)->stack_a->head->next->content,
-			*(int *)(*game)->stack_a->head->next->next->content
+	v_3e_case = discern_3elem_case(
+			(*game)->stack_a->head->num,
+			(*game)->stack_a->head->next->num,
+			(*game)->stack_a->head->next->next->num
 			);
-	solve_small_ps_3(game, case_3);
+	if (v_3e_case == PS_ERR)
+		return ;
+	solve_small_ps_3(game, v_3e_case);
 }
