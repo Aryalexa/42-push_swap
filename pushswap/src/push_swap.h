@@ -1,7 +1,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/42-libft/libft/libft.h"
+# include "../libft/42-libft/libft/libft.h"
 
 typedef enum e_order
 {
@@ -78,9 +78,9 @@ void	print_game_solution(t_game *game);
 // solver functions
 void	solve_small_ps(t_game **game);
 t_bool	is_sorted(t_stack *st);
+void	solve_big_ps(t_game **game);
 int		cheapest_play(t_stack *st_src, t_stack *st_dst, int num, t_play *rcase);
 void	apply_play_moves(t_game **game, t_dir ps_dir, int num, t_play play);
-void	solve_big_ps(t_game **game);
 
 // ops
 void	sa(t_game **game);
