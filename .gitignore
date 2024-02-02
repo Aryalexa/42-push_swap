@@ -5,5 +5,9 @@
 *.o
 *.a
 
+# project executables
 push_swap
+checker_Mac
+
+# libft
 libft/
