@@ -7,15 +7,15 @@ What you will learn:
 - C structs, C Enums, C Pointers, using functions as parameters.
 
 Table of Contents
-- [Push swap Problem](https://github.com/Aryalexa/42-push_swap#push-swap-problem)
-- [Project requirements](https://github.com/Aryalexa/42-push_swap#project-requirements)
-- [Resolving the Push swap Problem](https://github.com/Aryalexa/42-push_swap#solving-the-push-swap-problem)
+- [Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#push-swap-problem)
+- [Project requirements](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#project-requirements)
+- [Resolving the Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#solving-the-push-swap-problem)
 	- One, Two and Three elements cases
 	- Minimize the number of operations
 	- Algo basics
 	- Algo
-- [Program execution](https://github.com/Aryalexa/42-push_swap#program-execution)
-- [Resources/Credits](https://github.com/Aryalexa/42-push_swap#resourcescredits)
+- [Program execution](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#program-execution)
+- [Resources/Credits](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#resourcescredits)
 
 ### Push swap Problem
 It is an optimized-sorting problem using a pair of a special stack, stack A and stack B, with its own operations.
