@@ -47,7 +47,7 @@ t_bool	check_solution(t_game *game, t_deque *sol)
 		apply_op_on_game(&game, cur->content);
 		cur = cur->next;
 	}
-	return (is_sorted(game->stack_a));
+	return (is_sorted(game->stack_a) && game->stack_b->size == 0);
 }
 
 void	end_check(int **ints, t_game **game, t_deque **sol)

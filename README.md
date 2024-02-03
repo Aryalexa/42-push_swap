@@ -149,12 +149,20 @@ Here is an example of their usage:
 ARG="45 23 16 17 8"; ./push_swap $ARG | ./checker $ARG
 ```
 
+There's a python random numbers generator `random_nums.py` included in this project, it takes as argument the number of different random numbers to be generated. You can use it to evaluate the power of the algorithm.
+
+```bash
+ARG=$(python random_nums.py 100); ./push_swap $ARG | ./checker $ARG
+ARG=$(python random_nums.py 200); ./push_swap $ARG | wc -w
+```
+
 ### Resources/Credits
 - [Medium: ayogun's push-swap](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
 	- Github: [ayogun/push_swap](https://github.com/ayogun/push_swap)
 - Radix method: [Brazhnik/Push_swap](https://github.com/VBrazhnik/Push_swap/wiki/Algorithm) (not used but worth mentioning)
 
 
-# TO-DO
+### TO-DO
 - put headers
 - include libft properly to submit the project (79aa440)
+- do not submit random_nums.py
