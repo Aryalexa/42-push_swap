@@ -7,14 +7,15 @@ What you will learn:
 - C structs, C Enums, C Pointers, using functions as parameters.
 
 Table of Contents
-- Push swap Problem
-- Project requirements
-- Resolving the Push swap Problem
+- [Push swap Problem](https://github.com/Aryalexa/42-push_swap#push-swap-problem)
+- [Project requirements](https://github.com/Aryalexa/42-push_swap#project-requirements)
+- [Resolving the Push swap Problem](https://github.com/Aryalexa/42-push_swap#solving-the-push-swap-problem)
 	- One, Two and Three elements cases
 	- Minimize the number of operations
 	- Algo basics
 	- Algo
-- Execution
+- [Program execution](https://github.com/Aryalexa/42-push_swap#program-execution)
+- [Resources/Credits](https://github.com/Aryalexa/42-push_swap#resourcescredits)
 
 ### Push swap Problem
 It is an optimized-sorting problem using a pair of a special stack, stack A and stack B, with its own operations.
@@ -139,7 +140,7 @@ For `ss`... This implementation doesn't really use it.
 	- rotate stack_A until the minimum element is at the top.
 
 
-### Execution
+### Program execution
 
 Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate the checker program.
 Here is an example of their usage:
