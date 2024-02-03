@@ -52,3 +52,29 @@ void	del_game(t_game **game)
 	ft_clear_deque(&(*game)->sol, free);
 	free(*game);
 }
+
+void	apply_op_on_game(t_game **game, char *valid_op)
+{
+	if (!ft_strncmp(valid_op, "ss", 3))
+		ss(game);
+	else if (!ft_strncmp(valid_op, "sa", 3))
+		sa(game);
+	else if (!ft_strncmp(valid_op, "sb", 3))
+		sb(game);
+	else if (!ft_strncmp(valid_op, "pa", 3))
+		pa(game);
+	else if (!ft_strncmp(valid_op, "pb", 3))
+		pb(game);
+	else if (!ft_strncmp(valid_op, "ra", 3))
+		ra(game);
+	else if (!ft_strncmp(valid_op, "rb", 3))
+		rb(game);
+	else if (!ft_strncmp(valid_op, "rr", 3))
+		rr(game);
+	else if (!ft_strncmp(valid_op, "rra", 4))
+		rra(game);
+	else if (!ft_strncmp(valid_op, "rrb", 4))
+		rrb(game);
+	else if (!ft_strncmp(valid_op, "rrr", 4))
+		rrr(game);
+}

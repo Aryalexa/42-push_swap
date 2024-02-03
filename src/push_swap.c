@@ -18,13 +18,9 @@ void	solve_push_swap(t_game **game)
 void	end_game(int **ints, t_game **game)
 {
 	if (*game)
-	{
 		del_game(game);
-	}
 	if (*ints)
-	{
 		free(*ints);
-	}
 }
 
 int	main(int argc, char *argv[])

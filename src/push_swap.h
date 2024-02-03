@@ -74,6 +74,7 @@ t_game	*init_game(int *ints, int n);
 void	del_game(t_game **game);
 void	add_to_sol(t_game **game, const char *op);
 void	print_game_solution(t_game *game);
+void	apply_op_on_game(t_game **game, char *valid_op);
 
 // solver functions
 void	solve_small_ps(t_game **game);
