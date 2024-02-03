@@ -9,7 +9,7 @@ What you will learn:
 Table of Contents
 - [Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#push-swap-problem)
 - [Project requirements](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#project-requirements)
-- [Resolving the Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#solving-the-push-swap-problem)
+- [Solving the Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#solving-the-push-swap-problem)
 	- One, Two and Three elements cases
 	- Minimize the number of operations
 	- Algo basics
@@ -47,7 +47,7 @@ Operations:
 - Bonus: create a checker program that takes the elements in stack A as argument, reads the solution as input (valid operations separated by new lines (use EOF)) and prints "OK" or "KO".
 
 
-### Resolving the Push swap Problem
+### Solving the Push swap Problem
 
 Let's see some basics and how the algorithm goes.
 
@@ -146,7 +146,7 @@ Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate
 Here is an example of their usage:
 
 ```bash
-ARG="45 23 16 17 89 2 44 21 56 123 157 134 178 566 588 522 377 399 344 678 4 987 789"; ./push_swap $ARG | ./checker $ARG
+ARG="45 23 16 17 8"; ./push_swap $ARG | ./checker $ARG
 ```
 
 ### Resources/Credits
