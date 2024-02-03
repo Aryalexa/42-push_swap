@@ -1,7 +1,4 @@
-
 #include "push_swap.h"
-
-
 
 /**
  * Count moves using rr op

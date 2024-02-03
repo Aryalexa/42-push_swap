@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 static int	ft_st_max(t_stack *st)
 {
 	int			max;

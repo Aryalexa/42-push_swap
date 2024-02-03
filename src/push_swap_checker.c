@@ -1,10 +1,4 @@
 #include "push_swap.h"
-#include <string.h>
-
-void	leaks(void)
-{
-	system("leaks checker");
-}
 
 t_bool	valid_op(char *op)
 {
@@ -73,7 +67,6 @@ int	main(int argc, char *argv[])
 	t_game	*game;
 	t_deque	*solution;
 
-	atexit(leaks);
 	if (argc == 1)
 		return (0);
 	ints = args_as_ints(argc, argv, &n);
@@ -92,4 +85,3 @@ int	main(int argc, char *argv[])
 	end_check(&ints, &game, &solution);
 	return (0);
 }
-

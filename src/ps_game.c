@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 /**
  * init game
  * - all elemts in stack a

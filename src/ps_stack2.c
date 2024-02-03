@@ -54,7 +54,6 @@ int	ft_st_pop_rear(t_stack **st)
 	return (content);
 }
 
-
 /**
  * Iterates the stack ’st’ and applies the function ’f’ to the content of
  * each element.

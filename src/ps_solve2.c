@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 static void	arrange_min_first(t_game **game)
 {
 	int	pos_of_min;

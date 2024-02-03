@@ -1,10 +1,5 @@
 #include "push_swap.h"
 
-void	leaks(void)
-{
-	system("leaks push_swap");
-}
-
 void	solve_push_swap(t_game **game)
 {
 	if (is_sorted((*game)->stack_a))
@@ -29,7 +24,6 @@ int	main(int argc, char *argv[])
 	int		n;
 	t_game	*game;
 
-	//atexit(leaks);
 	if (argc == 1)
 		return (0);
 	ints = args_as_ints(argc, argv, &n);

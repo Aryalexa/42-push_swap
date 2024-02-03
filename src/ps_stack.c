@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 static t_intnode	*ft_new_intnode(t_intnode *prev, int num, t_intnode *next)
 {
 	t_intnode	*node;

@@ -5,7 +5,6 @@ int	ft_intcmp(int *a, int *b)
 	return (*a - *b);
 }
 
-
 /**
  * 	void (*)(void *) skip
 
@@ -33,7 +32,6 @@ static void	ft_putstr(void *x)
 	ft_printf("%s\n", (char *)x);
 }
 
-
 void	print_deque(t_deque *dq, t_bool numbers)
 {
 	void	(*prnt)(void *);
@@ -43,5 +41,4 @@ void	print_deque(t_deque *dq, t_bool numbers)
 	else
 		prnt = (void (*)(void *))ft_putstr;
 	ft_iter_deque(dq, prnt);
-	//ft_printf("\n");
 }

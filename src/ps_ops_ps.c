@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 void	sa(t_game **game)
 {
 	t_stack	*st;
@@ -54,7 +53,3 @@ void	pb(t_game **game)
 	if (op_push(&b, &a))
 		add_to_sol(game, "pb");
 }
-
-
-
-

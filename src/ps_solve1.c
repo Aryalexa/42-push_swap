@@ -37,7 +37,6 @@ static t_3case	discern_3elem_case(int n1, int n2, int n3)
 
 	min = ft_min_nbr(ft_min_nbr(n1, n2), n3);
 	max = ft_max_nbr(ft_max_nbr(n1, n2), n3);
-
 	if (n1 == min && n3 == max)
 		return (PS_123);
 	if (n3 == min && n2 == max)

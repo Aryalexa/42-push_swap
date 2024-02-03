@@ -61,7 +61,6 @@ void	ft_del_stack(t_stack **st);
 int		ft_stack_index(t_stack *st, int n);
 int		ft_csorted_stack_index(t_stack *st, int n);
 
-
 // game
 typedef struct s_game
 {
