@@ -86,7 +86,7 @@ Leverage same-time operations: `ss`, `rr`, `rrr`.
 Instead of doing 2 `ra` ops and 3 `rb` ops (5 ops), do 2 `rr` ops and 1 `rb` (3 ops).
 This way we reduce the number of operations from `N + M` to `max(N, M)`: `min(N, M)` same-time ops and the rest being single-stack ops.
 
-For `ss`... This implementation doesn't really use it.
+As for `ss`... This implementation doesn't really use it.
 
 #### Algo basics
 - Starting point: all elements in stack_A.
@@ -112,8 +112,8 @@ For `ss`... This implementation doesn't really use it.
 - Start moving two elements to stack_B: `pb`, `pb`. Two numbers are always in cicular order.
 
 - For all elements still in stack_A, find the element with minimum cost to move to stack_B while keeping stack_B in circular descending order. For each element `e`:
-	- How much does is the minimum cost to be put at the top?
-		- We could use`index of e in A` number of `ra` ops.
+	- What is the minimum cost to be put at the top?
+		- We could use `index of e in A` times the `ra` operation.
 		- Or because, `rra` also exists, we could use it `size of A - index of e in A` times to put it at the top.
 	- And, where in stack_B should `e` be?
 		- stack_B is in circular descending order
@@ -129,20 +129,20 @@ For `ss`... This implementation doesn't really use it.
 
 🔸 Move back all elements from stack_B to stack_A
 - We have at least 3 elements remaining in stack_A
-	- If they are not in ascending order, apply the straightforward solution.
+	- If they are not in ascending order, they are three so apply the straightforward solution.
 - Now we'll move back every element in stack_B to stack_A.
 	- stack_A is in circular ascending order
 	- choose the cheapest number to move while keeping stack_A in circular ascending order
-	- It's almost the same as moving from stack_A to stack_B, just the order changes.
+	- It's almost the same as moving from stack_A to stack_B, just the order in the target stack changes.
 
-🔸 Check that the minimum element of stack_A is at the top.
-	- stack_A is in circular ascending order but we want don't want the "circular" part.
-	- rotate stack_A until the minimum element is at the top.
+🔸 Rearrange stack_A so that its minimum element is at the top.
+- stack_A is in circular ascending order but we don't want the "circular" part.
+- rotate stack_A until the minimum element is at the top.
 
 
 ### Program execution
 
-Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate the checker program.
+Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate the `checker` program.
 Here is an example of their usage:
 
 ```bash
@@ -157,5 +157,4 @@ ARG="45 23 16 17 8"; ./push_swap $ARG | ./checker $ARG
 
 # TO-DO
 - put headers
-- erase min/max from t_stack
-- include libft properly to submit the project
+- include libft properly to submit the project (79aa440)

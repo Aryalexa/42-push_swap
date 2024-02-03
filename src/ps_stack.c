@@ -31,8 +31,6 @@ t_stack	*ft_new_stack(t_order order)
 	st->head = NULL;
 	st->rear = NULL;
 	st->size = 0;
-	st->min = -1;
-	st->max = -1;
 	st->order = order;
 	return (st);
 }
@@ -57,10 +55,6 @@ void	ft_st_append_rear(t_stack **st, int num)
 		(*st)->head = new_node;
 	(*st)->rear = new_node;
 	(*st)->size++;
-	if (num < (*st)->min)
-		(*st)->min = num;
-	if (num > (*st)->max)
-		(*st)->max = num;
 }
 
 /**
@@ -83,10 +77,6 @@ void	ft_st_append_head(t_stack **st, int num)
 		(*st)->rear = new_node;
 	(*st)->head = new_node;
 	(*st)->size++;
-	if (num < (*st)->min)
-		(*st)->min = num;
-	if (num > (*st)->max)
-		(*st)->max = num;
 }
 
 /**
@@ -100,15 +90,9 @@ void	ft_st_dump(t_stack **stack, int *ints, int n)
 	if (n == 0 || !(*stack))
 		return ;
 	i = 0;
-	(*stack)->min = ints[0];
-	(*stack)->max = ints[0];
 	while (i < n)
 	{
 		ft_st_append_rear(stack, ints[i]);
-		if (ints[i] < (*stack)->min)
-			(*stack)->min = ints[i];
-		if (ints[i] > (*stack)->max)
-			(*stack)->max = ints[i];
 		i++;
 	}
 }

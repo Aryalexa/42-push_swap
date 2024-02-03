@@ -46,8 +46,6 @@ typedef struct s_stack
 	t_intnode	*head;
 	t_intnode	*rear;
 	int			size;
-	int			min;
-	int			max;
 	t_order		order;
 }	t_stack;
 t_stack	*ft_new_stack(t_order order);
