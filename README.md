@@ -1,9 +1,9 @@
-# `push_swap` project
+# `push_swap` Project
 
 What you will learn: 
 - Logical thinking, project organization, case discerning. 
 - Data Structures: stack, deque (Deques are great, with them we can represent others as stack, queue, ...)
-- Sorting/searching algorithms. In this project approach a binary search will be used.
+- Sorting/searching algorithms? Useful but this approach is more of a greedy solution.
 - C structs, C Enums, C Pointers, using functions as parameters.
 
 Table of Contents
@@ -14,6 +14,7 @@ Table of Contents
 	- Minimize the number of operations
 	- Algo basics
 	- Algo
+- Execution
 
 ### Push swap Problem
 It is an optimized-sorting problem using a pair of a special stack, stack A and stack B, with its own operations.
@@ -42,6 +43,8 @@ Operations:
 
 - Input error management
 
+- Bonus: create a checker program that takes the elements in stack A as argument, reads the solution as input (valid operations separated by new lines (use EOF)) and prints "OK" or "KO".
+
 
 ### Resolving the Push swap Problem
 
@@ -50,11 +53,11 @@ Let's see some basics and how the algorithm goes.
 #### One, Two and Three elements cases
 These are the smallest cases, and for them the solution is straightforward without needing a second stack.
 
-- For one element, there's nothing to do.
-- For two elements, we will need a swap or not.
+- For one element, there's nothing to do, it's already sorted.
+- For two elements, either it's sorted or we need a swap.
 
 ##### Three elements cases
-This is the smallest scenario we will let happen when moving elements from one stack to the other.
+This is the smallest scenario we will let happen when moving elements from stack A to the stack B.
 
 How many ways can we order 3 different elements? `3! = 6`.
 
@@ -82,65 +85,76 @@ Leverage same-time operations: `ss`, `rr`, `rrr`.
 Instead of doing 2 `ra` ops and 3 `rb` ops (5 ops), do 2 `rr` ops and 1 `rb` (3 ops).
 This way we reduce the number of operations from `N + M` to `max(N, M)`: `min(N, M)` same-time ops and the rest being single-stack ops.
 
+For `ss`... This implementation doesn't really use it.
+
 #### Algo basics
 - Starting point: all elements in stack_A.
 - Goal: all elements in stack_A in ascending order.
 - If we arrange all elements in stack_B in descending order, it's direct to have stack_A in ascending order.
 	- `A: /\ <-- B: \/`
-- The algorithm considers the stacks are circular. So the stacks `3,2,1`, `1,3,2` and `2,1,3` are all in descending order (The final result does not do this consideration).
-- The algorithm will push everything from stack_A to stack_B in descending order, slowly.
-	- 🔴 Is the head of stack_A a new MIN or MAX in stack_B? move it to the head of stack_B
-		- If it is the MIN, we consider that it's correctly in desc order (consider the stacks are circular)
-	- Otherwise, we will find its position withing stack_B manually.
+- The algorithm during the process will keep the stacks in *circular ascending/descending order*. The stacks `3,2,1`, `1,3,2` and `2,1,3` are all in circular descending order.
+- The algorithm will push everything from one stack to the second stack slowly.
+	- It will try to maintain the circular order of the target stack.
+	- It chooses the cheapest number to push (for each number in the source stack, how much does it cost to be put at the top while rearrage the target stack, so we can push the number and keep the target stack ordered?)
 
 #### Algo
-🔸 check if stack is already in asc-order.
+🔸 check if stack_A is already in asc-order.
 - if already sorted end game
 - otherwise, continue
 
 🔸 Check the number of elements in stack_A
 - if size <= 3, give straightforward solution
-- otherwise, continue (in the next steps, remember to always check if the remainder is already in order!)
+- otherwise, continue
 
-🔸 Start moving two elements to stack_B: `pb`, `pb`.
+🔸 Move the elements in stack_A to stack_B while the number of elements in stack_A > 3. Move the **cheapest element**. (Remember to always check if the remainder is already in order!)
 
-🔸 Move the cheapest element from stack_A to stack_B.
+- Start moving two elements to stack_B: `pb`, `pb`. Two numbers are always in cicular order.
 
-Move one by one while the number os elements is stack_A > 3
-
-✨OR: averiguar el cacho mas grande ordenado y dejarlo en A. mover lo demas a B ordenadamente.
-
-- For all elements still in stack_A, find the element with minimum cost to move to stack_B and make stack_B descending ordered. We have 2 elements in stack_B.
-	- Consider how many ops we need to get each element to the head (`ra` ops for the upper half, `rra` ops for the other half) and then push it to stack_B (`pb`). Also don't forget that if stack_B is not in desc order, you need a `rb`/`rrb` (or you can use `rr` or `rrr` instead of the first `ra`/`rra`).
-	- The candidates are... the head:
-		- head (pos=0) needs pb or rb,pb (1 or 2)
-		- pos=1 needs ra(+rb),  pb (min 2)
-		- pos=3 needs ra, ra(+rb), pb (min 3)
-		- ..
-		- pos=n-2 needs rra, rra(+rrb), pb (min 3)
-		- tail (pos=n-1) need rra(+rrb), pb (min 2)
-- Continue finding the min cost element to move while maintaining stack B descendingly ordered. Now we have 3 elements in stack_B.
-	- to find its position in stack_B, we need 0 or 1 (`rb`/`rrb`) ops.
-	- 1 op to push it `pb`
-	- to get it out of stack_A, the number of ops needed are its position for the first half (`ra`) and len-position for the other half (`rra`).
-	- So, 1 + position + rb/rrb ops -> 1+pos or 1+pos+1 ops
-- Continue finding the min cost element to move while maintaining stack B descendingly ordered. Now we have B elements in stack_B and A in stack_A.
-	- there are B number of possible new positions, 0-B/2 ops. or >B/2 ops
-	- 1 op to push it `pb`
-	- to get it out of stack_A, 0-A/2 ops or >A/2 ops.
-	- So, we choose the minimum between 
-		- if 0-B/2 and 0-A/2 are the same op: max(0-B/2, 0-A/2) + 1
-		- if 0-B/2 and 0-A/2 are not the same op: min (max(0-B/2, >A/2), max(>B/2, 0-A/2)) + 1
+- For all elements still in stack_A, find the element with minimum cost to move to stack_B while keeping stack_B in circular descending order. For each element `e`:
+	- How much does is the minimum cost to be put at the top?
+		- We could use`index of e in A` number of `ra` ops.
+		- Or because, `rra` also exists, we could use it `size of A - index of e in A` times to put it at the top.
+	- And, where in stack_B should `e` be?
+		- stack_B is in circular descending order
+		- we are searching for the greatest number that is lower than `e`.
+		- What is the minimum cost to put this searched number at the top?
+- So for each number in stack_A, we have 4 possible ways to rotate both stacks and compare their costs.
+	- moving both tops only: using `ra` and `rb` ops. Leverage `rr` when counting.
+	- moving both rears only: using `rra` and `rrb` ops. Leverage `rrr` when counting.
+	- moving top and rear: using `ra` and `rrb` ops. No leverage here.
+	- moving rear and top: using `rra` and `rb` ops. No leverage here.
+- Choose the cheapest play, its cost will be the cost for the number.
+- Choose the cheapest number, apply the play and push it.
 
 🔸 Move back all elements from stack_B to stack_A
-
+- We have at least 3 elements remaining in stack_A
+	- If they are not in ascending order, apply the straightforward solution.
+- Now we'll move back every element in stack_B to stack_A.
+	- stack_A is in circular ascending order
+	- choose the cheapest number to move while keeping stack_A in circular ascending order
+	- It's almost the same as moving from stack_A to stack_B, just the order changes.
 
 🔸 Check that the minimum element of stack_A is at the top.
+	- stack_A is in circular ascending order but we want don't want the "circular" part.
+	- rotate stack_A until the minimum element is at the top.
 
 
+### Execution
 
+Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate the checker program.
+Here is an example of their usage:
+
+```bash
+ARG="45 23 16 17 89 2 44 21 56 123 157 134 178 566 588 522 377 399 344 678 4 987 789"; ./push_swap $ARG | ./checker $ARG
+```
 
 ### Resources/Credits
 - [Medium: ayogun's push-swap](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
 	- Github: [ayogun/push_swap](https://github.com/ayogun/push_swap)
-- Radix method: [Brazhnik/Push_swap](https://github.com/VBrazhnik/Push_swap/wiki/Algorithm)
+- Radix method: [Brazhnik/Push_swap](https://github.com/VBrazhnik/Push_swap/wiki/Algorithm) (not used but worth mentioning)
+
+
+# TO-DO
+- put headers
+- erase min/max from t_stack
+- include libft properly to submit the project
