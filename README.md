@@ -38,9 +38,9 @@ Operations:
 
 
 ### Project requirements
-- We need a program that takes an arbitrary number of integers as input and prints the solution to the "Push swap" problem as if the integers were inserted into stack A.
+- We need a program that takes an arbitrary number of integers as input and prints the solution to the "Push swap" problem as if the integers were the elements at stack A from top to bottom.
 
-- The solution must be a sequence of instructions.
+- The solution must be a sequence of valid operations.
 
 - Input error management
 
@@ -84,19 +84,19 @@ In total we have 6 cases:
 Leverage same-time operations: `ss`, `rr`, `rrr`.
 
 Instead of doing 2 `ra` ops and 3 `rb` ops (5 ops), do 2 `rr` ops and 1 `rb` (3 ops).
-This way we reduce the number of operations from `N + M` to `max(N, M)`: `min(N, M)` same-time ops and the rest being single-stack ops.
+This way we reduce the number of operations from `N + M` to `max(N, M)`: `min(N, M)` same-time ops and the rest being single-stack ops. Same for `rra`, `rrb` and `rrr`.
 
-As for `ss`... This implementation doesn't really use it.
+As for `ss`... This solution approach doesn't really use it.
 
 #### Algo basics
 - Starting point: all elements in stack_A.
 - Goal: all elements in stack_A in ascending order.
 - If we arrange all elements in stack_B in descending order, it's direct to have stack_A in ascending order.
 	- `A: /\ <-- B: \/`
-- The algorithm during the process will keep the stacks in *circular ascending/descending order*. The stacks `3,2,1`, `1,3,2` and `2,1,3` are all in circular descending order.
+- The algorithm during the process will keep the stacks in *circular* ascending/descending order. The stacks `3,2,1`, `1,3,2` and `2,1,3` are all in circular descending order.
 - The algorithm will push everything from one stack to the second stack slowly.
 	- It will try to maintain the circular order of the target stack.
-	- It chooses the cheapest number to push (for each number in the source stack, how much does it cost to be put at the top while rearrage the target stack, so we can push the number and keep the target stack ordered?)
+	- It chooses the cheapest number to push (for each number in the source stack, how much does it cost to put it at the top and rearrage the target stack, so we can push the number and keep the target stack circular ordered?)
 
 #### Algo
 🔸 check if stack_A is already in asc-order.
@@ -117,9 +117,9 @@ As for `ss`... This implementation doesn't really use it.
 		- Or because, `rra` also exists, we could use it `size of A - index of e in A` times to put it at the top.
 	- And, where in stack_B should `e` be?
 		- stack_B is in circular descending order
-		- we are searching for the greatest number that is lower than `e`.
-		- What is the minimum cost to put this searched number at the top?
-- So for each number in stack_A, we have 4 possible ways to rotate both stacks and compare their costs.
+		- we are searching for the position of the greatest number that is lower than `e`.
+		- What is the minimum cost to put it at the top?
+- So for each number in stack_A, we have 4 possible ways to rotate both stacks to their desired positions and then execute a push:
 	- moving both tops only: using `ra` and `rb` ops. Leverage `rr` when counting.
 	- moving both rears only: using `rra` and `rrb` ops. Leverage `rrr` when counting.
 	- moving top and rear: using `ra` and `rrb` ops. No leverage here.
@@ -130,13 +130,13 @@ As for `ss`... This implementation doesn't really use it.
 🔸 Move back all elements from stack_B to stack_A
 - We have at least 3 elements remaining in stack_A
 	- If they are not in ascending order, they are three so apply the straightforward solution.
-- Now we'll move back every element in stack_B to stack_A.
+- Now we'll move every element in stack_B back to stack_A.
 	- stack_A is in circular ascending order
 	- choose the cheapest number to move while keeping stack_A in circular ascending order
 	- It's almost the same as moving from stack_A to stack_B, just the order in the target stack changes.
 
 🔸 Rearrange stack_A so that its minimum element is at the top.
-- stack_A is in circular ascending order but we don't want the "circular" part.
+- stack_A has all elements and is in circular ascending order, but we don't want the "circular" part.
 - rotate stack_A until the minimum element is at the top.
 
 

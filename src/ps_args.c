@@ -72,10 +72,12 @@ t_bool	valid_args(int *ints, int n)
 
 	if (!ints || n <= 0)
 		return (FALSE);
+	nodups_lst = ft_lstnew(&ints[0]);
+	if (!nodups_lst)
+		return (FALSE);
+	i = 1;
 	ok = TRUE;
 	cmp = (int *(*)(void *, void *))ft_intcmp;
-	nodups_lst = ft_lstnew(&ints[0]);
-	i = 1;
 	while (i < n && ok)
 	{
 		if (ft_lstindex(nodups_lst, &ints[i], cmp) != -1)
