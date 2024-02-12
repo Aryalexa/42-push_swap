@@ -23,7 +23,7 @@ OBJS_PS	=  $(SRCS_PS:.c=.o)
 OBJS_CH	=  $(SRCS_CH:.c=.o)
 OBJS	=  $(SRCS:.c=.o)
 
-LIBFT_PATH  = ./libft/42-libft/libft
+LIBFT_PATH  = ./libftmod/libft
 # LIBFT_PATH  = ./libft
 LIBFT	= $(LIBFT_PATH)/libft.a
 

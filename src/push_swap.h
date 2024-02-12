@@ -1,7 +1,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/42-libft/libft/libft.h"
+# include "../libftmod/libft/libft.h"
 
 typedef enum e_order
 {
