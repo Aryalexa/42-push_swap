@@ -31,13 +31,13 @@ all:		$(NAME_PS)
 
 $(NAME_PS):	$(LIBFT) $(OBJS_PS) $(OBJS)
 			$(CC) $(CFLAGS) $(LIBFT) $(OBJS_PS) $(OBJS) -o $(NAME_PS)
-			make clean
+#			make clean
 
 bonus:		$(NAME_CH)
 
 $(NAME_CH):	$(LIBFT) $(OBJS_CH) $(OBJS)
 			$(CC) $(CFLAGS) $(LIBFT) $(OBJS_CH) $(OBJS) -o $(NAME_CH)
-			make clean
+#			make clean
 
 .c.o:
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) 

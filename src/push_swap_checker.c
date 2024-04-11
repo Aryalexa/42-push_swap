@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_checker.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/11 19:18:51 by macastro          #+#    #+#             */
+/*   Updated: 2024/04/11 19:18:52 by macastro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_bool	valid_op(char *op)
@@ -13,7 +25,7 @@ t_bool	valid_op(char *op)
 	return (FALSE);
 }
 
-t_deque	*read_solution(void)
+t_deque	*read_solution(t_deque **final_sol)
 {
 	t_deque	*sol;
 	char	*op;
@@ -34,6 +46,7 @@ t_deque	*read_solution(void)
 		ft_dq_append_rear(&sol, (void *)op);
 		op = get_next_line(0);
 	}
+	*final_sol = sol;
 	return (sol);
 }
 
@@ -71,8 +84,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	ints = args_as_ints(argc, argv, &n);
 	game = init_game(ints, n);
-	solution = read_solution();
-	if (!valid_args(ints, n) | !game || !solution)
+	if (!valid_args(ints, n) | !game || !read_solution(&solution))
 	{
 		end_check(&ints, &game, &solution);
 		ft_putstr_fd("Error\n", 2);
