@@ -7,7 +7,7 @@ CFLAGS	= -Wall -Wextra -Werror $(FT_SAN)
 AR		= ar -rcs
 RM		= /bin/rm -rf
 
-NAME_PS	= push_swap
+NAME	= push_swap
 NAME_CH = checker
 
 SRCS	= 	src/ps_args.c src/ps_game.c \
@@ -24,20 +24,17 @@ OBJS_CH	=  $(SRCS_CH:.c=.o)
 OBJS	=  $(SRCS:.c=.o)
 
 LIBFT_PATH  = ./libftmod/libft
-# LIBFT_PATH  = ./libft
 LIBFT	= $(LIBFT_PATH)/libft.a
 
-all:		$(NAME_PS)
+all:		$(NAME)
 
-$(NAME_PS):	$(LIBFT) $(OBJS_PS) $(OBJS)
-			$(CC) $(CFLAGS) $(OBJS_PS) $(OBJS) $(LIBFT) -o $(NAME_PS)
-#			make clean
+$(NAME):	$(LIBFT) $(OBJS_PS) $(OBJS)
+			$(CC) $(CFLAGS) $(OBJS_PS) $(OBJS) $(LIBFT) -o $(NAME)
 
 bonus:		$(NAME_CH)
 
 $(NAME_CH):	$(LIBFT) $(OBJS_CH) $(OBJS)
 			$(CC) $(CFLAGS) $(OBJS_CH) $(OBJS) $(LIBFT) -o $(NAME_CH)
-#			make clean
 
 .c.o:
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) 
@@ -51,7 +48,7 @@ clean:
 
 fclean:		clean
 			make -C $(LIBFT_PATH) fclean
-			$(RM) $(NAME_PS) $(NAME_CH)
+			$(RM) $(NAME) $(NAME_CH)
 
 re:			fclean all
 
