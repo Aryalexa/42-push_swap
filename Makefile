@@ -30,13 +30,13 @@ LIBFT	= $(LIBFT_PATH)/libft.a
 all:		$(NAME_PS)
 
 $(NAME_PS):	$(LIBFT) $(OBJS_PS) $(OBJS)
-			$(CC) $(CFLAGS) $(LIBFT) $(OBJS_PS) $(OBJS) -o $(NAME_PS)
+			$(CC) $(CFLAGS) $(OBJS_PS) $(OBJS) $(LIBFT) -o $(NAME_PS)
 #			make clean
 
 bonus:		$(NAME_CH)
 
 $(NAME_CH):	$(LIBFT) $(OBJS_CH) $(OBJS)
-			$(CC) $(CFLAGS) $(LIBFT) $(OBJS_CH) $(OBJS) -o $(NAME_CH)
+			$(CC) $(CFLAGS) $(OBJS_CH) $(OBJS) $(LIBFT) -o $(NAME_CH)
 #			make clean
 
 .c.o:

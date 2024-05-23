@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: macastro <macastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:18:47 by macastro          #+#    #+#             */
-/*   Updated: 2024/04/11 19:18:48 by macastro         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:41:14 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_intcmp(int *a, int *b)
 */
 void	skip(void *x)
 {
-	(void)*x;
+	(void)x;
 }
 
 /// ------------- prints ---------------

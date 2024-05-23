@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_stack2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: macastro <macastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:18:42 by macastro          #+#    #+#             */
-/*   Updated: 2024/04/11 19:18:43 by macastro         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:41:00 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,13 @@ void	ft_st_iter(t_stack *st, void (*f)(int))
 void	ft_del_stack(t_stack **st)
 {
 	t_intnode	*cur;
-	int			content;
 
 	if (!*st)
 		return ;
 	cur = (*st)->head;
 	while (cur)
 	{
-		content = ft_st_pop_head(st);
+		ft_st_pop_head(st);
 		cur = (*st)->head;
 	}
 	free(*st);

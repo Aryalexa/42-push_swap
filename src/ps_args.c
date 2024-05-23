@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: macastro <macastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:18:01 by macastro          #+#    #+#             */
-/*   Updated: 2024/04/11 19:18:02 by macastro         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:40:04 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_bool	valid_args(int *ints, int n)
 	int		i;
 	t_bool	ok;
 	t_list	*nodups_lst;
-	int		*(*cmp)(void *, void *);
+	int		(*cmp)(void *, void *);
 
 	if (!ints || n <= 0)
 		return (FALSE);
@@ -89,7 +89,7 @@ t_bool	valid_args(int *ints, int n)
 		return (FALSE);
 	i = 1;
 	ok = TRUE;
-	cmp = (int *(*)(void *, void *))ft_intcmp;
+	cmp = (int (*)(void *, void *))ft_intcmp;
 	while (i < n && ok)
 	{
 		if (ft_lstindex(nodups_lst, &ints[i], cmp) != -1)
