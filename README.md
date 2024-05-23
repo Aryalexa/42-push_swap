@@ -1,12 +1,13 @@
 # `push_swap` Project
 
-What you will learn: 
+Concepts to learn with this project: 
 - Logical thinking, project organization, case discerning. 
 - Data Structures: stack, deque (Deques are great, with them we can represent others as stack, queue, ...)
 - Sorting/searching algorithms? Useful but this approach is more of a greedy solution.
 - C structs, C Enums, C Pointers, using functions as parameters.
 
 Table of Contents
+- [Program execution](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#program-execution)
 - [Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#push-swap-problem)
 - [Project requirements](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#project-requirements)
 - [Solving the Push swap Problem](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#solving-the-push-swap-problem)
@@ -14,8 +15,26 @@ Table of Contents
 	- Minimize the number of operations
 	- Algo basics
 	- Algo
-- [Program execution](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#program-execution)
 - [Resources/Credits](https://github.com/Aryalexa/42-push_swap?tab=readme-ov-file#resourcescredits)
+
+## Program execution
+Clone the repo.
+```sh
+git clone --recursive git@github.com:Aryalexa/42-push_swap.git
+```
+Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate the `checker` program.
+Here is an example of their usage:
+
+```bash
+ARG="45 23 16 17 8"; ./push_swap $ARG | ./checker $ARG
+```
+
+There's a python random numbers generator `random_nums.py` included in this project, it takes as argument the number of different random numbers to be generated. You can use it to evaluate the power of the algorithm.
+
+```bash
+ARG=$(python random_nums.py 100); ./push_swap $ARG | ./checker $ARG
+ARG=$(python random_nums.py 200); ./push_swap $ARG | wc -w
+```
 
 ## Push swap Problem
 It is an optimized-sorting problem using a pair of a special stack, stack A and stack B, with its own operations.
@@ -39,11 +58,8 @@ Operations:
 
 ## Project requirements
 - We need a program that takes an arbitrary number of integers as input and prints the solution to the "Push swap" problem as if the integers were the elements at stack A from top to bottom.
-
 - The solution must be a sequence of valid operations.
-
 - Input error management
-
 - Bonus: create a checker program that takes the elements in stack A as argument, reads the solution as input (valid operations separated by new lines (use EOF)) and prints "OK" or "KO".
 
 
@@ -136,30 +152,10 @@ As for `ss`... The solution approach we have chosen doesn't really use it. But i
 - stack_A has all elements and is in circular ascending order, but we don't want the "circular" part.
 - rotate stack_A until the minimum element is at the top.
 
-
-## Program execution
-
-Use ``make`` for generate the `push_swap` program and ``make bonus`` to generate the `checker` program.
-Here is an example of their usage:
-
-```bash
-ARG="45 23 16 17 8"; ./push_swap $ARG | ./checker $ARG
-```
-
-There's a python random numbers generator `random_nums.py` included in this project, it takes as argument the number of different random numbers to be generated. You can use it to evaluate the power of the algorithm.
-
-```bash
-ARG=$(python random_nums.py 100); ./push_swap $ARG | ./checker $ARG
-ARG=$(python random_nums.py 200); ./push_swap $ARG | wc -w
-```
-
 ## Resources/Credits
 - [Medium: ayogun's push-swap](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
 	- Github: [ayogun/push_swap](https://github.com/ayogun/push_swap)
 - Radix method: [Brazhnik/Push_swap](https://github.com/VBrazhnik/Push_swap/wiki/Algorithm) (not used but worth mentioning)
 
-
-## TO-DO
-- put headers
 - include libft properly to submit the project (79aa440)
 - do not submit random_nums.py
