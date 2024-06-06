@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_checker.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: macastro <macastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:18:51 by macastro          #+#    #+#             */
-/*   Updated: 2024/04/11 19:18:52 by macastro         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:43:47 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,11 @@ int	main(int argc, char *argv[])
 		return (0);
 	ints = args_as_ints(argc, argv, &n);
 	game = init_game(ints, n);
-	if (!valid_args(ints, n) | !game || !read_solution(&solution))
+	solution = NULL;
+	if (!valid_args(ints, n) || !game || !read_solution(&solution))
 	{
 		end_check(&ints, &game, &solution);
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\n", 1);
 		return (-1);
 	}
 	if (check_solution(game, solution))
