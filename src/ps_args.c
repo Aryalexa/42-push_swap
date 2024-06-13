@@ -6,7 +6,7 @@
 /*   By: macastro <macastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 19:18:01 by macastro          #+#    #+#             */
-/*   Updated: 2024/05/23 19:40:04 by macastro         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:41:09 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	*words_as_ints(char **words, int n)
 	i = 0;
 	while (i < n)
 	{
-		if (ft_atoi_secure(words[i], &ints[i]) < 0)
+		if (!ft_atoi_secure(words[i], &ints[i]))
 		{
 			free(ints);
 			return (NULL);
